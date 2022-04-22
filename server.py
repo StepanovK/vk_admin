@@ -41,6 +41,7 @@ def time_now():
     cur_time = datetime.now()
     return str(cur_time)[:19]
 
+
 class Server:
 
     def __init__(self, server_name, serverconfig):
@@ -100,8 +101,8 @@ class Server:
                             geotags = address_finder.get_address_info(event.object['message']['text'])
                         except Exception as ex:
                             error = '{}: Ошибка получения геометки для поста ID {}: {}'.format(time_now(),
-                                                                                             post_id,
-                                                                                             ex)
+                                                                                               post_id,
+                                                                                               ex)
                             print(error)
                             self.vk.messages.send(peer_id=self.chat_for_suggest,
                                                   message=error,
@@ -193,7 +194,7 @@ class Server:
 
     def send_msg(self, random_id, send_id, message, keyboard=None, attachment=None):
 
-        #print("отправка сообщения " + message)
+        # print("отправка сообщения " + message)
 
         if keyboard == None:
             keyboard = open("keyboards/none.json", "r", encoding="UTF-8").read()
@@ -205,7 +206,7 @@ class Server:
                                      attachment=attachment)
 
     def get_keyboard(self, keyboard, post_id):
-        #print(os.listdir("./"))
+        # print(os.listdir("./"))
         keyboard = open(keyboard, "r", encoding="UTF-8").read()
         keyboard = json.loads(keyboard)
         for elem in keyboard['buttons']:
@@ -357,9 +358,9 @@ class Server:
                 print('Отправка сообщения от имени админа пользователю {}'.format(user_info['id']))
                 # try:
                 self.admin_messages.method('messages.send', user_id=user_info['id'],
-                    message=message,
-                    random_id=random.randint(10 ** 4, 10 ** 5),
-                    attachment=post['attachments'])
+                                           message=message,
+                                           random_id=random.randint(10 ** 4, 10 ** 5),
+                                           attachment=post['attachments'])
                 # elf.vk_admin.messages.send(peer_id=user_info['id'],
                 #                             message=message,
                 #                             random_id=random.randint(10 ** 4, 10 ** 5),
@@ -444,7 +445,7 @@ class Server:
         sorted_posts = sorted(all_posts, key=lambda x: x['date'], reverse=True)
         last_posts = []
         for i in range(len(sorted_posts)):
-            if i <= count-1:
+            if i <= count - 1:
                 last_posts.append(sorted_posts[i])
             else:
                 break
@@ -603,9 +604,9 @@ class Server:
             self.clear_geotag(post_id)
 
         elif not payload['command'] is None:
-                message = 'Неизвестная команда: {}'.format(payload['command'])
-                self.vk.messages.send(peer_id=chat_id, message=message, random_id=random.randint(10 ** 5, 10 ** 6))
-                print(message)
+            message = 'Неизвестная команда: {}'.format(payload['command'])
+            self.vk.messages.send(peer_id=chat_id, message=message, random_id=random.randint(10 ** 5, 10 ** 6))
+            print(message)
 
     def get_payload_from_button(self, button):
         payload = {}
@@ -721,4 +722,3 @@ class Server:
         except:
             print("Неизвестная ошибка при проверки наличия сообщений пользователя {}".format(user_id))
         return message_found
-
