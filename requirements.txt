@@ -1,0 +1,4 @@
+environs~=9.5
+selenium
+vk-api
+schedule

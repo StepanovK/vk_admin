@@ -1,0 +1,63 @@
+{
+  "one_time": false,
+  "inline": true,
+  "buttons": [
+    [{
+      "action": {
+        "type": "text",
+        "payload": {
+          "command": "public_post",
+          "post_id": ""
+        },
+        "label": "Опубликовать"
+      },
+      "color": "primary"
+    }],
+    [{
+        "action": {
+          "type": "text",
+          "payload": {
+            "command": "add_hashtags",
+            "post_id": ""
+          },
+          "label": "Добавить хэштеги"
+        },
+        "color": "default"
+      }],
+    [{
+        "action": {
+          "type": "text",
+          "payload": {
+            "command": "templates_to_reply_to_user",
+            "post_id": ""
+          },
+          "label": "Ответить шаблоном"
+        },
+        "color": "default"
+      }],
+    [{
+        "action": {
+          "type": "text",
+          "payload": {
+            "command": "add_geotag",
+            "post_id": ""
+          },
+          "label": "Добавить геометку"
+        },
+        "color": "default"
+      }],
+    [{
+      "action": {
+        "type": "text",
+        "payload": {
+          "command": "reject",
+          "post_id": ""
+        },
+        "label": "Отклонить"
+      },
+      "color": "negative"
+
+    }]
+
+  ]
+}

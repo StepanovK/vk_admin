@@ -1,0 +1,17 @@
+{
+  "one_time": false,
+  "inline": true,
+  "buttons": [
+    [{
+        "action": {
+          "type": "text",
+          "payload": {
+            "command": "clear_geotag",
+            "post_id": ""
+          },
+          "label": "Удалить геометку"
+        },
+        "color": "default"
+      }]
+  ]
+}
