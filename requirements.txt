@@ -1,4 +1,5 @@
 environs~=9.5
 selenium
-vk-api
+vk_api
+vk_messages
 schedule
