@@ -6,12 +6,14 @@ import os
 import time
 from datetime import datetime
 import address_finder
+import urllib3
 
 import vk_api
 from vk_api.bot_longpoll import VkBotLongPoll, VkBotEventType
 
 from vk_messages import MessagesAPI
 
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 def get_str_attachments_from_post(post):
     attachments = ''
@@ -64,8 +66,13 @@ class Server:
 
         self.username = None
         self.answer = None
-        self.vk_admin = vk_api.VkApi(serverconfig['admin_phone'], serverconfig['admin_pass'])
-        self.vk_admin.auth()
+        self.vk_admin = vk_api.VkApi(
+            login=serverconfig['admin_phone'],
+            password=serverconfig['admin_pass'],
+            token="6feca2819d1be85021d83fd83c284c9a89e24c841cc48f6fd9a865f2d8d8835c3f28a957d87590add92a7")
+        self.vk_admin.http.headers[
+            'User-agent'] = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:94.0) Gecko/20100101 Firefox/94.0'
+        self.vk_admin.auth(token_only=True)
         self.vk_admin = self.vk_admin.get_api()
 
         self.posts_settings = {}
